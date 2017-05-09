@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Visualization</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div id="fetch" style="background-color: #456372">Fetch</div>
+    <div id="output"></div>
+    <script type="text/javascript">
+(function() {
+    function ajax(callback, path) {
+	var xhr;
+	if (window.ActiveXObject) {
+            try {
+		xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch(e) {
+		alert(e.message);
+		xhr = null;
+            }
+	} else {
+            xhr = new XMLHttpRequest();
+	}
+	xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+		callback(xhr);
+            }
+	}
+	xhr.open('GET', path, true);
+	//xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhr.send();
+	return xhr;
+    }
+
+    
+    window.addEventListener('load', function() {
+	console.log('elo');
+	var fetch = document.getElementById('fetch');
+	var output = document.getElementById('output');
+
+	fetch.addEventListener('click', function() {
+	    console.log('pozdrawiam');
+	    ajax(function(xhr) {
+		output.innerHTML = xhr.response;
+	    }, 'http://127.0.0.1:8080/messages');
+	});
+    });
+})();
+    </script>
+  </body>
+</html>
