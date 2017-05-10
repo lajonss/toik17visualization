@@ -1,6 +1,6 @@
 package visualization;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 import visualization.Message;
@@ -20,6 +20,6 @@ public class Starter {
     
     @Scheduled(fixedRate = 5000)
     public void publishMessage() {
-	visualization.notify(new Message(LocalDate.now(), random.nextDouble()));
+	visualization.notify(new Message(LocalDateTime.now(), random.nextDouble()));
     }
 }

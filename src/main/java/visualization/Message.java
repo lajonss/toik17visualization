@@ -1,16 +1,16 @@
 package visualization;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Message {
-    private LocalDate timestamp;
+    private LocalDateTime timestamp;
     private Double fitness;
 
-    public Message(LocalDate timestamp, Double fitness) {
+    public Message(LocalDateTime timestamp, Double fitness) {
 	this.timestamp = timestamp;
 	this.fitness = fitness;
     }
 
-    public LocalDate getTimestamp() { return timestamp; }
+    public LocalDateTime getTimestamp() { return timestamp; }
     public Double getFitness() { return fitness; }
 }
