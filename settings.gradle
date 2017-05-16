@@ -1,0 +1,4 @@
+rootProject.name = 'toik17visualization'
+
+include 'backend'
+include 'frontend'

@@ -1,0 +1,27 @@
+buildscript {
+    repositories {
+    	mavenCentral()
+	    maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+	    classpath ("gradle.plugin.com.mattwhipple.gradle:gradle-emacs-jdee:0.1.0")
+        classpath "com.moowork.gradle:gradle-node-plugin:1.1.1"
+    }
+}
+
+apply plugin: "com.mattwhipple.emacs-jdee"
+apply plugin: 'com.moowork.node'
+
+repositories {
+    mavenCentral()
+}
+
+npm_build {
+
+}
+
+npm_start {
+
+}
