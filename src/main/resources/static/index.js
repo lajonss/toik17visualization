@@ -34,10 +34,11 @@
             }, 'http://127.0.0.1:8080/messages');
         });
 
-        var wsConnect = document.getElementById('ws-connect');
         var wsOutput = document.getElementById('ws-output');
+	var wsTime = document.getElementById('ws-time');
+	var wsValue = document.getElementById('ws-value');
 
-        wsConnect.addEventListener('click', function() {
+	(function() {
             var socket = new SockJS('/websocket');
 	    var client = Stomp.over(socket);
 	    client.connect({}, function(frame) {
@@ -45,10 +46,13 @@
 		console.log(frame);
 		client.subscribe('/fitness', function(msg) {
 		    console.log("Received from server");
-		    console.log(JSON.parse(msg.body));
+		    var info = JSON.parse(msg.body);
+		    console.log(info);
 		    wsOutput.innerHTML += '<br />' +  msg.body;
+		    wsTime.innerHTML = "" + info.timestamp.hour + ":" + info.timestamp.minute + ":" + info.timestamp.second;
+		    wsValue.innerHTML = info.fitness;
 		});
 	    });
-        });
+	})();
     });
 })();

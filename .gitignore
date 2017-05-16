@@ -6,3 +6,7 @@ prj.el
 *.iws
 *~
 
+/bin/
+.classpath
+.project
+.settings/
