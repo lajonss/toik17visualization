@@ -2,19 +2,14 @@
 
 ## Running project
 
-1. Build project using
+1. Run project using
 
 ```
-./gradlew build
+./gradlew bootrun
 ```
 
-2. Run generated archive using
-
-```
-java -jar build/libs/visualisation-spring-part-0.0.1.jar
-```
 
 ## Available endpoints
 
-1. GET /messages
+1. GET /type
 2. Stomp@SockJS /fitness
