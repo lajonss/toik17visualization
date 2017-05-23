@@ -31,15 +31,13 @@
 	fetch.addEventListener('click', function() {
 	    ajax(function(xhr) {
 		output.innerHTML = xhr.response;
-            }, 'http://127.0.0.1:8080/messages');
+            }, 'http://127.0.0.1:8080/type');
         });
 
         var wsOutput = document.getElementById('ws-output');
-	var wsTime = document.getElementById('ws-time');
-	var wsValue = document.getElementById('ws-value');
 
 	(function() {
-            var socket = new SockJS('/websocket');
+        var socket = new SockJS('/websocket');
 	    var client = Stomp.over(socket);
 	    client.connect({}, function(frame) {
 		console.log("Connected to server");
@@ -48,9 +46,7 @@
 		    console.log("Received from server");
 		    var info = JSON.parse(msg.body);
 		    console.log(info);
-		    wsOutput.innerHTML += '<br />' +  msg.body;
-		    wsTime.innerHTML = "" + info.timestamp.hour + ":" + info.timestamp.minute + ":" + info.timestamp.second;
-		    wsValue.innerHTML = info.fitness;
+		    wsOutput.innerHTML = msg.body + '<br />' +  wsOutput.innerHTML;
 		});
 	    });
 	})();
