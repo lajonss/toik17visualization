@@ -11,5 +11,7 @@
 
 ## Available endpoints
 
-1. GET /type
+1. GET /config
+{type: String, biggerFitnessIsBetter: Boolean}
 2. Stomp@SockJS /fitness
+3. GET /messages (unimplemented)
