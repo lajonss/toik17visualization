@@ -3,6 +3,8 @@ var bestSerie;
 var workerSeries = [];
 var bestOfAllPoints = [];
 
+var visualizations = ["chartAllInTime", "chartBestInTime", "chartBestOfAll", "tableOutput", "ws-output"];
+
 function addPointToCharts(workerId, xVal, value) {
     var point = {
         category: workerId,
@@ -32,9 +34,35 @@ function addPointToCharts(workerId, xVal, value) {
 
     // best of all
     if (bestOfAllPoints[workerId] === undefined) {
-
+        chartBestOfAll.series[0].addPoint({
+            category: "Worker " + workerId,
+            x: workerId,
+            y: value
+        });
+        bestOfAllPoints[workerId] = chartBestOfAll.series[0].data[chartBestOfAll.series[0].data.length - 1];
+    } else {
+        if (value > bestOfAllPoints[workerId].y) {
+            bestOfAllPoints[workerId].update(value);
+        }
     }
 
+    // table
+    var date = new Date(xVal);
+    console.log(date);
+
+    var table = document.getElementById("tableOutput");
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    cell1.innerHTML = "Worker " + workerId;
+    cell2.innerHTML = date.getDay() + '.' +
+        date.getMonth() + '.' +
+        date.getFullYear() + ' ' +
+        date.getHours() + ':' +
+        date.getMinutes() + ':' +
+        date.getSeconds();
+    cell3.innerHTML = value;
 }
 
 Highcharts.setOptions({

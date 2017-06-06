@@ -1,16 +1,24 @@
-/**
- * Created by huber on 30.05.2017.
- */
-/**
- * Created by huber on 30.05.2017.
- */
+var chartBestOfAll = Highcharts.chart('chartBestOfAll', {
 
-var chartBestOfAll = Highcharts.stockChart('chartBestOfAll', {
-
-    rangeSelector: chartSettings.rangeSelector,
+    chart: {
+        type: 'bar'
+    },
 
     title: {
-        text: 'All Workers In Time'
+        text: 'Best fitness of all workers'
+    },
+
+    xAxis: {
+        categories: ['Worker 0', 'Worker 1', 'Worker 2', 'Worker 3']
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Fitness of worker'
+        }
+    },
+    legend: {
+        reversed: true
     },
 
     plotOptions: {
@@ -23,15 +31,7 @@ var chartBestOfAll = Highcharts.stockChart('chartBestOfAll', {
         }
     },
 
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        borderWidth: 0
-    },
-
     series: [{
-        name: 'all',
         data: []
     }]
 
